@@ -43,7 +43,7 @@
   */
 
 #ifndef CFG_TUSB_MCU
-# if defined(__SAME54P20A__)
+# if defined(__SAME54P20A__) || defined(__SAME51N19A__)
 #  define CFG_TUSB_MCU				OPT_MCU_SAME5X
 #  define CFG_TUSB_MEM_SECTION		/* nothing */
 #  define CFG_TUSB_MEM_ALIGN		__attribute__ ((aligned(4)))
