@@ -45,12 +45,12 @@
 #ifndef CFG_TUSB_MCU
 # if defined(__SAME54P20A__)
 #  define CFG_TUSB_MCU				OPT_MCU_SAME5X
-#  define CFG_TUSB_MEM_SECTION		/* nothing */
-#  define CFG_TUSB_MEM_ALIGN		__attribute__ ((aligned(4)))
+#  define CFG_TUSB_MEM_SECTION		__attribute__((section(".DmaBuffers")))
+#  define CFG_TUSB_MEM_ALIGN		__attribute__((aligned(4)))
 # elif defined(__SAME70Q20B__)
 #  define CFG_TUSB_MCU				OPT_MCU_SAMX7X
 #  define CFG_TUSB_MEM_SECTION		__attribute__((section(".ram_nocache")))
-#  define CFG_TUSB_MEM_ALIGN		__attribute__ ((aligned(4)))
+#  define CFG_TUSB_MEM_ALIGN		__attribute__((aligned(4)))
 # else
 # error Unsupported MCU
 # endif
