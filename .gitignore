@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Misc
+/.settings/language.settings.xml
+
 # Output folders
 /RP2040/
 /SAME5x/
