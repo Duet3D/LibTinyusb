@@ -29,7 +29,7 @@ SAME5X_DEFINES := \
 	-D_ecv_array=
 
 # Compiler flags - C (matching Eclipse)
-SAME5X_CFLAGS := -c -std=gnu11 \
+SAME5X_CFLAGS := -c \
 	-mcpu=cortex-m4 \
 	-mthumb \
 	-mfpu=fpv4-sp-d16 \
@@ -38,14 +38,12 @@ SAME5X_CFLAGS := -c -std=gnu11 \
 	-ffunction-sections \
 	-fdata-sections \
 	-nostdlib \
-	-Wall \
-	-Werror \
 	-Wundef \
-	-Wwrite-strings \
 	-Wdouble-promotion \
 	-Werror=return-type \
+	-Werror=implicit \
 	-fsingle-precision-constant \
-	-O2 \
+	-fstack-usage \
 	$(SAME5X_INCLUDES) \
 	$(SAME5X_DEFINES)
 
@@ -53,7 +51,7 @@ SAME5X_CFLAGS := -c -std=gnu11 \
 ifeq ($(DEBUG),1)
 SAME5X_CFLAGS += -O0 -g3
 else
-SAME5X_CFLAGS += -O2
+SAME5X_CFLAGS += -O3
 endif
 
 # Object files
