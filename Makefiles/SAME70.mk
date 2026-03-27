@@ -30,12 +30,13 @@ SAME70_DEFINES := \
 	-D_ecv_array=
 
 # Compiler flags - C (matching Eclipse, corrected to Cortex-M7)
-SAME70_CFLAGS := -c -std=gnu11 \
+SAME70_CFLAGS := -c \
 	-mcpu=cortex-m7 \
 	-mthumb \
 	-mfpu=fpv5-d16 \
 	-mfloat-abi=hard \
 	-mfp16-format=ieee \
+	-mno-unaligned-access \
 	-ffunction-sections \
 	-fdata-sections \
 	-nostdlib \
@@ -44,18 +45,16 @@ SAME70_CFLAGS := -c -std=gnu11 \
 	-Werror=return-type \
 	-Werror=implicit \
 	-fsingle-precision-constant \
-	-O2 \
+	-fstack-usage \
+	-fdump-rtl-expand \
+	-O3 \
 	-Wall \
-	-Werror \
-	-Wwrite-strings \
 	$(SAME70_INCLUDES) \
 	$(SAME70_DEFINES)
 
 # Add debug flags if DEBUG=1
 ifeq ($(DEBUG),1)
 SAME70_CFLAGS += -O0 -g3
-else
-SAME70_CFLAGS += -O2
 endif
 
 # Object files

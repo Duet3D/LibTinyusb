@@ -44,6 +44,8 @@ SAME5X_CFLAGS := -c \
 	-Werror=implicit \
 	-fsingle-precision-constant \
 	-fstack-usage \
+	-fdump-rtl-expand \
+	-Wall \
 	$(SAME5X_INCLUDES) \
 	$(SAME5X_DEFINES)
 
