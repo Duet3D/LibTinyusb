@@ -6,12 +6,14 @@ SAME70_TARGET := $(SAME70_BUILD_DIR)/libLibTinyusb.a
 SAME70_SRC_DIR := src
 
 # Find all C source files, excluding test/lib/hw/tools/examples directories as per Eclipse
-SAME70_C_SRCS := $(shell find $(SAME70_SRC_DIR)/tinyusb/src -name '*.c' \
-	! -path '*/tinyusb/test/*' \
-	! -path '*/tinyusb/lib/*' \
-	! -path '*/tinyusb/hw/*' \
-	! -path '*/tinyusb/tools/*' \
-	! -path '*/tinyusb/examples/*')
+SAME70_EXCLUDE_DIRS := \
+	$(SAME70_SRC_DIR)/tinyusb/test \
+	$(SAME70_SRC_DIR)/tinyusb/lib \
+	$(SAME70_SRC_DIR)/tinyusb/hw \
+	$(SAME70_SRC_DIR)/tinyusb/tools \
+	$(SAME70_SRC_DIR)/tinyusb/examples
+
+SAME70_C_SRCS := $(filter-out $(addsuffix /%,$(SAME70_EXCLUDE_DIRS)),$(call rwildcard,$(SAME70_SRC_DIR)/tinyusb/src,*.c))
 
 # Include paths (matching Eclipse .cproject)
 SAME70_INCLUDES := \

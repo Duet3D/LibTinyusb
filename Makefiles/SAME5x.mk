@@ -6,12 +6,14 @@ SAME5X_TARGET := $(SAME5X_BUILD_DIR)/libLibTinyusb.a
 SAME5X_SRC_DIR := src
 
 # Find all C source files, excluding test/lib/hw/tools/examples directories as per Eclipse
-SAME5X_C_SRCS := $(shell find $(SAME5X_SRC_DIR)/tinyusb/src -name '*.c' \
-	! -path '*/tinyusb/test/*' \
-	! -path '*/tinyusb/lib/*' \
-	! -path '*/tinyusb/hw/*' \
-	! -path '*/tinyusb/tools/*' \
-	! -path '*/tinyusb/examples/*')
+SAME5X_EXCLUDE_DIRS := \
+	$(SAME5X_SRC_DIR)/tinyusb/test \
+	$(SAME5X_SRC_DIR)/tinyusb/lib \
+	$(SAME5X_SRC_DIR)/tinyusb/hw \
+	$(SAME5X_SRC_DIR)/tinyusb/tools \
+	$(SAME5X_SRC_DIR)/tinyusb/examples
+
+SAME5X_C_SRCS := $(filter-out $(addsuffix /%,$(SAME5X_EXCLUDE_DIRS)),$(call rwildcard,$(SAME5X_SRC_DIR)/tinyusb/src,*.c))
 
 # Include paths (matching Eclipse .cproject)
 SAME5X_INCLUDES := \
