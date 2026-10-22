@@ -3,6 +3,8 @@
 #
 #   DUET_MCU          SAME70 or SAME5x
 #   DUET_PART_DEFINE  the macro naming the MCU part, e.g. __SAME70Q20B__
+#   DUET_RTL_DUMPS    write each source's RTL (-fdump-rtl-expand), for call graph and
+#                     stack analysis; ccache cannot cache these compiles
 #   DUET_RTOS         build against Duet::FreeRTOS, which must already exist
 #
 # Target: Duet::LibTinyusb. Needs Duet::CoreN2G for the MCU's device headers. The stack is
@@ -37,6 +39,6 @@ target_compile_options(LibTinyusb PRIVATE
     -Werror=return-type
     -Werror=implicit
     -fstack-usage
-    -fdump-rtl-expand
+    $<$<BOOL:${DUET_RTL_DUMPS}>:-fdump-rtl-expand>
     # __FILE__ relative to the library root, so the image does not depend on the checkout location
     -fmacro-prefix-map=${CMAKE_CURRENT_SOURCE_DIR}/=)
