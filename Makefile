@@ -52,7 +52,7 @@ export Q
 
 # Recursive wildcard: $(call rwildcard,<dir>,<patterns>)
 # Source lists must not shell out to find, which resolves to FIND.EXE on Windows
-rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+rwildcard = $(sort $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d)))
 
 # tinyusb is a submodule; without it the scan finds nothing and the archive would look up to date forever
 ifeq ($(wildcard src/tinyusb/src/*),)
