@@ -55,7 +55,7 @@ SAME5X_CFLAGS := -c \
 ifeq ($(DEBUG),1)
 SAME5X_CFLAGS += -O0 -g3
 else
-SAME5X_CFLAGS += -O3
+SAME5X_CFLAGS += -O2
 endif
 
 # Object files

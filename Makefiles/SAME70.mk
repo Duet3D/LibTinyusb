@@ -49,7 +49,7 @@ SAME70_CFLAGS := -c \
 	-fsingle-precision-constant \
 	-fstack-usage \
 	-fdump-rtl-expand \
-	-O3 \
+	-O2 \
 	-Wall \
 	$(SAME70_INCLUDES) \
 	$(SAME70_DEFINES)

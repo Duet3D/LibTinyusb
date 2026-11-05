@@ -31,7 +31,6 @@ if(DUET_RTOS)
 endif()
 
 target_compile_options(LibTinyusb PRIVATE
-    $<$<CONFIG:Release>:-O3>
     -fsingle-precision-constant
     -Wall
     -Wundef
